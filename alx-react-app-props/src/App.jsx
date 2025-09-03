@@ -1,5 +1,5 @@
-import ProfilePage from './ProfilePage';
-import UserContext from './Usercontext';
+import ProfilePage from './components/ProfilePage';
+import UserContext from './components/Usercontext';
 
 function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };

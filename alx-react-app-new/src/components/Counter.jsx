@@ -3,11 +3,11 @@ import { useState } from 'react';
 const Counter = () => {
     const [counter, setCounter] = useState(0);
 
-    function Increasecounter () {
+    function Increament () {
         setCounter(counter + 1);
     }
 
-    function Decreasecounter () {
+    function Decreament () {
         setCounter(counter - 1);
     }
 
@@ -18,8 +18,8 @@ const Counter = () => {
     return (
         <div style={{ backgroundColor: 'navy', color: 'white', textAlign: 'center'}}>
             <h1>Counter: {counter}</h1>
-            <button onClick ={Increasecounter}>Increase</button>
-            <button onClick ={Decreasecounter}>Decrease</button>
+            <button onClick ={Increament}>Increase</button>
+            <button onClick ={Decreament}>Decrease</button>
             <button onClick={Resetcounter}>Reset</button>
         </div>
     );

@@ -1,4 +1,4 @@
-import ProfilePage from './components/UserProfile.jsx';
+import ProfilePage from './components/ProfilePage';
 import UserContext from './components/Usercontext';
 
 function App() {

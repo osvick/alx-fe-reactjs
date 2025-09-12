@@ -3,11 +3,12 @@ import RecipeList from './components/RecipeList';
 
 const App = () => {
   return (
-        <div>
-          <AddRecipeForm />
-          <RecipeList />
-        </div>
+    <div>
+      <h1>Recipe Sharing App</h1>
+      <AddRecipeForm />
+      <RecipeList />
+    </div>
   );
-}
+};
 
 export default App;

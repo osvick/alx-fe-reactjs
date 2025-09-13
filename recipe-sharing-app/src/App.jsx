@@ -1,10 +1,10 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import useRecipeStore from './components/recipeStore';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
-import EditRecipeForm from './components/EditRecipeForm';
-import DeleteRecipeButton from './components/DeleteRecipeButton';
+import SearchBar from './components/SearchBar';
 
 const App = () => {
   return (
@@ -19,14 +19,14 @@ const App = () => {
         </header>
 
         <main>
+          <>
+          <SearchBar />
+          </>
           <Routes>
             <Route path="/" element={<RecipeList />} />
             <Route path="/add" element={<AddRecipeForm />} />
-            <Route path="/recipes/:id/edit" element={<EditRecipeForm />} />
-            <Route path="/recipes/:id/delete" element={<DeleteRecipeButton />} />
             {/* fallback route could be added */}
             <Route path="/recipe/:id" element={<RecipeDetails />} />
-
           </Routes>
         </main>
       </div>

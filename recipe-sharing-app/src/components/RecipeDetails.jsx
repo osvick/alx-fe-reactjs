@@ -1,3 +1,4 @@
+// src/components/RecipeDetails.jsx
 import { useParams } from 'react-router-dom';
 import useRecipeStore from './recipeStore';
 import EditRecipeForm from './EditRecipeForm';
@@ -6,7 +7,7 @@ import DeleteRecipeButton from './DeleteRecipeButton';
 const RecipeDetails = () => {
   const { id } = useParams();
   const recipe = useRecipeStore((state) =>
-    state.recipes.find((r) => r.id.toString() === id)
+    state.recipes.find((r) => Number(r.id) === Number(id))
   );
 
   if (!recipe) {

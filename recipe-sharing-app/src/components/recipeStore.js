@@ -1,6 +1,6 @@
+// src/store/recipeStore.js
 import { create } from 'zustand';
 
-// load saved recipes safely from localStorage
 let savedRecipes = [];
 try {
   const raw = localStorage.getItem('recipes');
@@ -9,39 +9,29 @@ try {
   console.error('Failed to parse recipes from localStorage', err);
 }
 
-export const useRecipeStore = create((set, get) => ({
+const useRecipeStore = create((set, get) => ({
   recipes: savedRecipes,
+  searchTerm: '',
+  filteredRecipes: savedRecipes,
 
   addRecipe: (newRecipe) => {
     set((state) => {
       const updated = [...state.recipes, newRecipe];
-      try {
-        localStorage.setItem('recipes', JSON.stringify(updated));
-      } catch (err) {
-        console.error('Failed to persist recipes', err);
-      }
-      return { recipes: updated };
+      localStorage.setItem('recipes', JSON.stringify(updated));
+      return { recipes: updated, filteredRecipes: updated };
     });
   },
 
   setRecipes: (recipes) => {
-    try {
-      localStorage.setItem('recipes', JSON.stringify(recipes));
-    } catch (err) {
-      console.error('Failed to persist recipes', err);
-    }
-    set({ recipes });
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+    set({ recipes, filteredRecipes: recipes });
   },
 
   deleteRecipe: (id) => {
     set((state) => {
       const updated = state.recipes.filter((r) => r.id !== id);
-      try {
-        localStorage.setItem('recipes', JSON.stringify(updated));
-      } catch (err) {
-        console.error('Failed to persist recipes', err);
-      }
-      return { recipes: updated };
+      localStorage.setItem('recipes', JSON.stringify(updated));
+      return { recipes: updated, filteredRecipes: updated };
     });
   },
 
@@ -50,13 +40,24 @@ export const useRecipeStore = create((set, get) => ({
       const updated = state.recipes.map((r) =>
         r.id === id ? { ...r, ...updates } : r
       );
-      try {
-        localStorage.setItem('recipes', JSON.stringify(updated));
-      } catch (err) {
-        console.error('Failed to persist recipes', err);
-      }
-      return { recipes: updated };
+      localStorage.setItem('recipes', JSON.stringify(updated));
+      return { recipes: updated, filteredRecipes: updated };
     });
+  },
+
+  // 🔍 New search-related actions
+  setSearchTerm: (term) => {
+    set({ searchTerm: term });
+    get().filterRecipes(term);
+  },
+
+  filterRecipes: (term) => {
+    const search = term?.toLowerCase() || get().searchTerm.toLowerCase();
+    const filtered = get().recipes.filter((r) =>
+      r.title.toLowerCase().includes(search) ||
+      r.description?.toLowerCase().includes(search)
+    );
+    set({ filteredRecipes: filtered });
   },
 }));
 

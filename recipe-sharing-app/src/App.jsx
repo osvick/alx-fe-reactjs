@@ -22,10 +22,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<RecipeList />} />
             <Route path="/add" element={<AddRecipeForm />} />
-            <Route path="/recipes/:id" element={<RecipeDetails />} />
             <Route path="/recipes/:id/edit" element={<EditRecipeForm />} />
             <Route path="/recipes/:id/delete" element={<DeleteRecipeButton />} />
             {/* fallback route could be added */}
+            <Route path="/recipe/:id" element={<RecipeDetails />} />
+
           </Routes>
         </main>
       </div>

@@ -1,54 +1,89 @@
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import { fetchAdvancedUsers } from "../services/githubService";
 
 export default function Search() {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!username) return;
-
     setLoading(true);
     setError("");
-    setUser(null);
+    setUsers([]);
 
     try {
-      const data = await fetchUserData(username);
-      setUser(data);
+      const data = await fetchAdvancedUsers(username, location, minRepos);
+      setUsers(data.items); // `items` is the array of users from search endpoint
     } catch (err) {
-      setError("Looks like we cant find the user");
+      setError("Looks like we can't find the user");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="max-w-xl mx-auto mt-10 p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-3 bg-white shadow-md p-6 rounded-lg"
+      >
         <input
+          className="border rounded p-2"
           type="text"
-          placeholder="Enter GitHub username"
+          placeholder="Username (optional)"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <input
+          className="border rounded p-2"
+          type="text"
+          placeholder="Location (optional)"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <input
+          className="border rounded p-2"
+          type="number"
+          placeholder="Min Repositories (optional)"
+          value={minRepos}
+          onChange={(e) => setMinRepos(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white rounded p-2 hover:bg-blue-700"
+        >
+          Search
+        </button>
       </form>
 
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {loading && <p className="text-center mt-4">Loading...</p>}
+      {error && <p className="text-red-600 mt-4">{error}</p>}
 
-      {user && (
-        <div>
-          <img src={user.avatar_url} alt={user.login} width="80" />
-          <h3>{user.name || user.login}</h3>
-          <a href={user.html_url} target="_blank" rel="noreferrer">
-            View Profile
-          </a>
-        </div>
-      )}
+      <div className="mt-6 space-y-4">
+        {users.map((user) => (
+          <div
+            key={user.id}
+            className="flex items-center gap-4 border p-3 rounded shadow"
+          >
+            <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
+            <div>
+              <h3 className="font-semibold">{user.login}</h3>
+              <a
+                href={user.html_url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-500 underline"
+              >
+                View Profile
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -17,9 +17,13 @@ export default function Search() {
 
     try {
       const data = await fetchUserData(username, location, minRepos);
-      setUsers(data.items); // `items` is the array of users from search endpoint
-    } catch (err) {
-      setError("Looks like we can't find the user");
+      if (data.items.length === 0) {
+        setError("Looks like we can't find the user");
+      } else {
+        setUsers(data.items);
+      }
+    } catch {
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -69,7 +73,11 @@ export default function Search() {
             key={user.id}
             className="flex items-center gap-4 border p-3 rounded shadow"
           >
-            <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
+            <img
+              src={user.avatar_url}
+              alt={user.login}
+              className="w-16 h-16 rounded-full"
+            />
             <div>
               <h3 className="font-semibold">{user.login}</h3>
               <a

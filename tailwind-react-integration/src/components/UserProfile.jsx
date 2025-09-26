@@ -15,7 +15,7 @@ function UserProfile() {
                 alt="User Profile" 
                 className="
                 rounded-full mx-auto
-                w-24 h-24
+                sm:w-24 sm:h-24
                 md:w-36 md:h-36
                 " 
             />

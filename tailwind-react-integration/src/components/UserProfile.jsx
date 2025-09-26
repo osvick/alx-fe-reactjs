@@ -8,6 +8,9 @@ function UserProfile() {
 
                 /* --- Medium Screen (md: 768px and above) --- */*
                 md:max-w-sm md:my-20 md:p-8
+
+                /* --- Hover-effect --- */
+                transition-shadow duration-500 hover:shadow-xl
                 ">
 
             <img 
@@ -17,6 +20,9 @@ function UserProfile() {
                 rounded-full mx-auto
                 sm:w-24 sm:h-24
                 md:w-36 md:h-36
+
+                /* --- Hover effect --- */
+                transition-transform duration-300 ease-in-out hover:scale-110
                 " 
             />
             
@@ -24,6 +30,9 @@ function UserProfile() {
                 font-bold text-blue-800 my-4 text-center
                 text-lg
                 md:text-xl
+                
+                /* --- Hover effect --- */
+                transition-colors duration-200 hover:text-blue-500
                 ">
                  John Doe
                 </h1> 

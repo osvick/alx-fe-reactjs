@@ -4,10 +4,10 @@ function UserProfile() {
                 bg-gray-100 mx-auto my-10 rounded-lg shadow-lg text-center 
                    
                 /* --- Small Screen (sm:640px and above --- */
-                max-w-xs p-4
+                sm:max-w-xs sm:p-4
 
                 /* --- Medium Screen (md: 768px and above) --- */*
-                md:max-w-sm md:my-20
+                md:max-w-sm md:my-20 md:p-8
                 ">
 
             <img 

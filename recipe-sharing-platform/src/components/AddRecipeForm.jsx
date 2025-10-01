@@ -10,14 +10,21 @@ const AddRecipeForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    // 🔴 NON-DESTRUCTURING METHOD: Directly accessing e.target.name and e.target.value
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
     
-    // Clear the error for this field as the user types
-    if (errors[name]) {
-        setErrors({ ...errors, [name]: '' });
+    // Update the state using the explicitly named variables
+    setFormData(prevData => ({ 
+      ...prevData, 
+      [fieldName]: fieldValue // Use [fieldName] to set the key dynamically
+    }));
+    
+    // Clear the error for this field
+    if (errors[fieldName]) {
+      setErrors(prevErrors => ({ ...prevErrors, [fieldName]: '' }));
     }
-  };
+ };
 
   const validate = () => {
     let newErrors = {};

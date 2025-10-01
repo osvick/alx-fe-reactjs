@@ -26,7 +26,7 @@ const RecipeDetail = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center text-2xl text-blue-600 bg-gray-50">
-        Loading Recipe Details...
+        Loading Recipe Detail...
       </div>
     );
   }

@@ -43,7 +43,7 @@ const HomePage = () => {
                     Discover your favourite recipes
                 </p>
             </header>
-            <div className='max-w-7xl mx-auto px-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+            <div className='max-w-7xl mx-auto px-4 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                 {recipesData.map(recipe => (
                     <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}

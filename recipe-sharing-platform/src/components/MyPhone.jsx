@@ -1,7 +1,7 @@
 function MyPhone() {
     return(
-        <div className="text-blue-500">
-            <h2>
+        <div>
+            <h2 className="text-blue-700">
                 Happy Independence Day 
             </h2>
         </div>

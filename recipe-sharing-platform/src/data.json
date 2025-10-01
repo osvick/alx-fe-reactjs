@@ -2,19 +2,109 @@
   {
     "id": 1,
     "title": "Spaghetti Carbonara",
-    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/300x200/4c4c4c/ffffff?text=Carbonara"
+    "summary": "A classic Italian pasta dish with a creamy sauce made from eggs, cheese, pancetta, and pepper.",
+    "image": "https://via.placeholder.com/600x400/4c4c4c/ffffff?text=Carbonara+Detail",
+    "ingredients": [
+      "200g Spaghetti",
+      "100g Guanciale (or pancetta)",
+      "2 large eggs",
+      "50g Pecorino Romano cheese",
+      "Black pepper"
+    ],
+    "instructions": [
+      "Cook spaghetti according to package directions.",
+      "Fry guanciale until crispy.",
+      "Whisk eggs and cheese with pepper.",
+      "Drain pasta, toss with egg mixture and guanciale."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/300x200/ff9900/000000?text=Tikka+Masala"
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
+    "image": "https://via.placeholder.com/300x200/ff9900/000000?text=Tikka+Masala",
+    "ingredients": [
+      "500g boneless chicken (cut into cubes)",
+      "150g plain yogurt",
+      "2 tbsp lemon juice",
+      "2 tsp ground cumin",
+      "2 tsp ground coriander",
+      "2 tsp garam masala",
+      "1 tsp turmeric",
+      "1 tsp chili powder (adjust to taste)",
+      "3 cloves garlic (minced)",
+      "1-inch piece ginger (grated)",
+      "3 tbsp vegetable oil or ghee",
+      "1 medium onion (finely chopped)",
+      "400g canned tomatoes (blended) or 3 fresh large tomatoes (pureed)",
+      "150ml heavy cream (or coconut cream for lighter option)",
+      "Salt (to taste)",
+      "Fresh cilantro leaves (for garnish)"
+    ],
+    "instructions": [
+      "Mix yogurt, lemon juice, cumin, coriander, turmeric, chili powder, half the garlic, and ginger. Marinate chicken for at least 1 hour.",
+      "Cook chicken in a pan or grill until browned and slightly charred. Set aside.",
+      "In a pan, heat oil/ghee. Sauté onions until golden, add garlic, ginger, and garam masala, then stir in tomato puree and salt. Simmer 10 minutes.",
+      "Add chicken, simmer 10 minutes, then stir in cream and cook for 5 minutes.",
+      "Garnish with cilantro and serve with rice or naan."
+    ]
   },
   {
     "id": 3,
     "title": "Classic Beef Burgers",
     "summary": "Juicy beef patties served on toasted buns with fresh toppings.",
-    "image": "https://via.placeholder.com/300x200/a31c1c/ffffff?text=Beef+Burger"
+    "image": "https://via.placeholder.com/300x200/a31c1c/ffffff?text=Beef+Burger",
+    "ingredients": [
+      "500g ground beef (80% lean, 20% fat)",
+      "1 small onion (grated)",
+      "2 cloves garlic (minced)",
+      "1 egg (optional, for binding)",
+      "1/2 cup breadcrumbs (optional)",
+      "1 tsp Worcestershire sauce",
+      "1 tsp black pepper",
+      "1 tsp salt",
+      "1 tbsp oil or butter",
+      "4 burger buns",
+      "Cheese slices (optional)",
+      "Lettuce, tomato, onion rings, pickles",
+      "Ketchup, mustard, mayonnaise"
+    ],
+    "instructions": [
+      "Mix ground beef, onion, garlic, egg, breadcrumbs, Worcestershire sauce, salt, and pepper. Shape into 4 patties.",
+      "Heat oil/butter in a pan or grill. Cook patties 3–4 minutes per side. Add cheese slices if desired.",
+      "Toast burger buns lightly on the grill or pan.",
+      "Assemble with sauces, lettuce, patty, tomato, onion, and pickles.",
+      "Serve with fries or salad."
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Jollof Rice",
+    "summary": "A popular West African one-pot dish made with rice, tomatoes, peppers, and spices.",
+    "image": "https://via.placeholder.com/300x200/f48024/ffffff?text=Jollof+Rice",
+    "ingredients": [
+      "3 cups long-grain parboiled rice",
+      "1/4 cup vegetable oil",
+      "1 medium onion (chopped)",
+      "4 large tomatoes (blended) or 400g canned tomatoes",
+      "2 red bell peppers (blended)",
+      "2 cloves garlic (minced)",
+      "1 tsp thyme",
+      "1 tsp curry powder",
+      "2 bay leaves",
+      "2 tbsp tomato paste",
+      "4 cups chicken stock or water",
+      "1 tsp salt",
+      "1 tsp black pepper",
+      "1 Scotch bonnet pepper (optional, for heat)"
+    ],
+    "instructions": [
+      "Blend tomatoes, peppers, and onion into a smooth paste.",
+      "Heat oil in a pot, add chopped onions and fry until golden. Stir in tomato paste and cook for 2–3 minutes.",
+      "Add blended mixture, thyme, curry, bay leaves, and Scotch bonnet. Cook until sauce thickens and oil floats on top.",
+      "Pour in stock, season with salt and pepper, then stir in rice.",
+      "Cover tightly and cook on low heat until rice is tender and liquid absorbed.",
+      "Fluff rice with a fork and serve hot with chicken, beef, or fish."
+    ]
   }
 ]

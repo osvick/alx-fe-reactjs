@@ -1,8 +1,25 @@
-import React from 'react';
-import recipesData from '../data.json'
+import React, { useEffect, useState } from 'react';
 import RecipeCard from './RecipeCard';
+import recipesData from '../data.json'
 
 const HomePage = () => {
+    const [recipes, setRecipes] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+        setRecipes(recipesData);
+        setIsLoading(false);
+    }, 500);
+ }, []);
+
+ if (isLoading) {
+    return (
+        <div className='min-h-screen flex items-center justify-center bg-gray-50'>
+            <p className='text-xl text-blue-600'>Loading delicious recipes...</p>
+        </div>
+    );
+ }
+    
     return (
         <div className='min-h-screen bg-gray-50 py-10'>
             <header className='text-center mb-10 px-4'>

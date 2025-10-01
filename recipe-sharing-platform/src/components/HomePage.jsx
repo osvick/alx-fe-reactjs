@@ -55,6 +55,14 @@ const HomePage = () => {
                 <p className='text-xl text-gray-500'>
                     Discover your favourite recipes
                 </p>
+
+                <Link 
+                   to="/add-recipe" 
+                 className="inline-flex items-center bg-blue-500 text-white font-bold py-2 px-4 
+                 rounded-full shadow-lg hover:bg-blue-700 transition duration-300"
+                 >
+                 <span className="text-2xl mr-2">+</span> Submit New Recipe
+               </Link>
             </header>
             <div className='max-w-7xl mx-auto px-4 grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                 {recipesData.map(recipe => (

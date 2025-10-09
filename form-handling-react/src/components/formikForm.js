@@ -1,79 +1,99 @@
-import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
-// Define the validation schema using Yup
+// ✅ Validation Schema using Yup
 const validationSchema = Yup.object({
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Required'),
-  password: Yup.string()
-    .min(6, 'Must be at least 6 characters')
-    .required('Required'),
+  username: Yup.string().required("Username is required."),
+  email: Yup.string().email("Invalid email address.").required("Email is required."),
+  password: Yup.string().min(6, "Password must be at least 6 characters.").required("Password is required."),
 });
 
-const FormikForm = () => {
-  // Pass the initial values, validation schema, and submission handler to useFormik
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values, { setSubmitting, resetForm }) => {
-      // Handle form submission logic (e.g., API call)
-      alert(JSON.stringify(values, null, 2));
-      
-      // Simulate an asynchronous API call
-      setTimeout(() => {
-        setSubmitting(false); // Enable the submit button
-        resetForm(); // Optional: reset the form fields
-      }, 500);
-    },
-  });
-
+function FormikForm() {
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <h2>Login</h2>
-      
-      {/* Email Input Field */}
-      <div style={{ marginBottom: '1rem' }}>
-        <label htmlFor="email">Email Address</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur} // Important for triggering validation on field exit
-          value={formik.values.email}
-        />
-        {/* Display validation errors */}
-        {formik.touched.email && formik.errors.email ? (
-          <div style={{ color: 'red' }}>{formik.errors.email}</div>
-        ) : null}
-      </div>
+    <Formik
+      initialValues={{ username: "", email: "", password: "" }}
+      validationSchema={validationSchema}
+      onSubmit={(values, { resetForm }) => {
+        console.log("Formik form submitted:", values);
+        resetForm();
+      }}
+    >
+      {() => (
+        <Form style={styles.form}>
+          <h2>Formik Registration Form</h2>
 
-      {/* Password Input Field */}
-      <div style={{ marginBottom: '1rem' }}>
-        <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-        />
-        {formik.touched.password && formik.errors.password ? (
-          <div style={{ color: 'red' }}>{formik.errors.password}</div>
-        ) : null}
-      </div>
+          {/* Username Field */}
+          <div style={styles.inputGroup}>
+            <label>Username:</label>
+            <Field
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+            />
+            {/* ✅ Using ErrorMessage */}
+            <ErrorMessage name="username" component="p" style={styles.error} />
+          </div>
 
-      <button type="submit" disabled={formik.isSubmitting}>
-        {formik.isSubmitting ? 'Logging In...' : 'Submit'}
-      </button>
-    </form>
+          {/* Email Field */}
+          <div style={styles.inputGroup}>
+            <label>Email:</label>
+            <Field
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+            />
+            {/* ✅ Using ErrorMessage */}
+            <ErrorMessage name="email" component="p" style={styles.error} />
+          </div>
+
+          {/* Password Field */}
+          <div style={styles.inputGroup}>
+            <label>Password:</label>
+            <Field
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            {/* ✅ Using ErrorMessage */}
+            <ErrorMessage name="password" component="p" style={styles.error} />
+          </div>
+
+          <button type="submit" style={styles.button}>
+            Register
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
+}
+
+const styles = {
+  form: {
+    maxWidth: "400px",
+    margin: "2rem auto",
+    padding: "1rem",
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    backgroundColor: "#f9f9f9",
+  },
+  inputGroup: {
+    marginBottom: "1rem",
+    display: "flex",
+    flexDirection: "column",
+  },
+  button: {
+    padding: "0.5rem",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer",
+  },
+  error: {
+    color: "red",
+    fontSize: "0.9rem",
+    marginTop: "4px",
+  },
 };
 
 export default FormikForm;

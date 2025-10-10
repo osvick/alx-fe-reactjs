@@ -10,7 +10,7 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Login from "./pages/Login.jsx";
-import Profile from "./pages/Profile.jsx";
+import Profile from "./components/Profile.jsx";
 import ProfileDetails from "./pages/ProfileDetails.jsx";
 import ProfileSettings from "./pages/ProfileSettings.jsx";
 import PostPage from "./pages/PostPage.jsx";

@@ -10,7 +10,6 @@ const fetchPosts = async () => {
 };
 
 const Posts = () => {
-  // ✅ Use React Query with caching and refetch options
   const {
     data: posts,
     isLoading,
@@ -21,9 +20,10 @@ const Posts = () => {
   } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
-    cacheTime: 1000 * 60 * 5, // 5 minutes
-    refetchOnWindowFocus: false, // Prevent auto-refetch on tab focus
-    keepPreviousData: true, // Keep old data while fetching new
+    cacheTime: 1000 * 60 * 5,       // Keep data in cache for 5 min after unused
+    staleTime: 1000 * 60 * 1,       // Data is "fresh" for 1 minute
+    refetchOnWindowFocus: true,     // Will only refetch after staleTime expires
+    keepPreviousData: true,
   });
 
   if (isLoading) return <p>Loading posts...</p>;

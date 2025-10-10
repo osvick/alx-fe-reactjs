@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Login from "./pages/Login.jsx";
-import Profile from "./components/Profile.jsx";
-import ProfileDetails from "./pages/ProfileDetails.jsx";
-import ProfileSettings from "./pages/ProfileSettings.jsx";
+import Profile from "./components/Profile.jsx";  // ✅ corrected path
 import PostPage from "./pages/PostPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -36,18 +30,21 @@ export default function App() {
               }
             />
             <Route path="/login" element={<Login />} />
+
+            {/* ✅ Profile now handles its own nested routes */}
             <Route
-              path="/profile/:username"
+              path="/profile/:username/*"
               element={
                 <ProtectedRoute>
                   <Profile />
                 </ProtectedRoute>
               }
-            >
-              <Route path="details" element={<ProfileDetails />} />
-              <Route path="settings" element={<ProfileSettings />} />
-            </Route>
+            />
+
+            {/* Dynamic route for individual posts */}
             <Route path="/posts/:postId" element={<PostPage />} />
+
+            {/* Catch-all for 404s */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

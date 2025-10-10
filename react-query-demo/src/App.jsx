@@ -1,35 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Posts from "./components/PostsComponent";
 
+// ✅ Create a QueryClient instance
+const queryClient = new QueryClient();
+
 function App() {
-  const [showPosts, setShowPosts] = useState(true);
-
   return (
-    <div style={{ padding: "1rem" }}>
-      <h1>React Query Caching Demo 🚀</h1>
-      <button onClick={() => setShowPosts(!showPosts)} style={styles.button}>
-        {showPosts ? "Go to Home" : "View Posts"}
-      </button>
-
-      {showPosts ? (
+    // ✅ Wrap your app with QueryClientProvider and pass the client
+    <QueryClientProvider client={queryClient}>
+      <div style={{ padding: "1rem" }}>
+        <h1>React Query Demo 🚀</h1>
         <Posts />
-      ) : (
-        <p>You're on the Home screen. Navigate back to see cached posts.</p>
-      )}
-    </div>
+      </div>
+    </QueryClientProvider>
   );
 }
-
-const styles = {
-  button: {
-    padding: "0.5rem 1rem",
-    marginBottom: "1rem",
-    backgroundColor: "#007bff",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-    borderRadius: "4px",
-  },
-};
 
 export default App;

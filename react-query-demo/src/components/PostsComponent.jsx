@@ -2,43 +2,42 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchPosts = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  if (!res.ok) {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  if (!response.ok) {
     throw new Error("Failed to fetch posts");
   }
-  return res.json();
+  return response.json();
 };
 
-function Posts() {
+const Posts = () => {
+  // ✅ Use React Query with caching and refetch options
   const {
-    data,
+    data: posts,
     isLoading,
     isError,
     error,
     refetch,
-    isFetching, // this shows background refetching state
+    isFetching,
   } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
-    // Keep cached data for 5 minutes
-    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 5, // 5 minutes
+    refetchOnWindowFocus: false, // Prevent auto-refetch on tab focus
+    keepPreviousData: true, // Keep old data while fetching new
   });
 
   if (isLoading) return <p>Loading posts...</p>;
-  if (isError) return <p style={{ color: "red" }}>Error: {error.message}</p>;
+  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <div>
-      <h2>📢 Posts (React Query)</h2>
-
-      {/* ✅ Manual Refetch Button */}
-      <button onClick={() => refetch()} style={styles.button}>
-        {isFetching ? "Refreshing..." : "🔄 Refetch Data"}
+      <h2>Posts</h2>
+      <button onClick={() => refetch()} disabled={isFetching}>
+        {isFetching ? "Refreshing..." : "Refetch Posts"}
       </button>
-
-      <ul style={styles.list}>
-        {data.slice(0, 10).map((post) => (
-          <li key={post.id} style={styles.item}>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
             <strong>{post.title}</strong>
             <p>{post.body}</p>
           </li>
@@ -46,28 +45,6 @@ function Posts() {
       </ul>
     </div>
   );
-}
-
-const styles = {
-  button: {
-    padding: "0.5rem 1rem",
-    margin: "1rem 0",
-    backgroundColor: "#28a745",
-    color: "#fff",
-    border: "none",
-    cursor: "pointer",
-    borderRadius: "4px",
-  },
-  list: {
-    listStyle: "none",
-    padding: 0,
-  },
-  item: {
-    background: "#f5f5f5",
-    marginBottom: "0.5rem",
-    padding: "0.5rem",
-    borderRadius: "4px",
-  },
 };
 
 export default Posts;

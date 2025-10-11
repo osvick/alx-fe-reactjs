@@ -14,6 +14,7 @@ export default function Navbar() {
       <NavLink to={user ? `/profile/${user.username}` : "/login"}>
         Profile
       </NavLink>
+
       <NavLink to="/posts/42">Example Post</NavLink>
 
       <div style={{ marginLeft: "auto" }}>

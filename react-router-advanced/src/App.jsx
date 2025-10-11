@@ -6,8 +6,9 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Login from "./pages/Login.jsx";
-import Profile from "./components/Profile.jsx";  // ✅ corrected path
+import Profile from "./components/Profile.jsx";
 import PostPage from "./pages/PostPage.jsx";
+import BlogPost from "./pages/BlogPost.jsx";   
 import NotFound from "./pages/NotFound.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import { AuthProvider } from "./context/AuthProvider.jsx";
@@ -31,7 +32,7 @@ export default function App() {
             />
             <Route path="/login" element={<Login />} />
 
-            {/* ✅ Profile now handles its own nested routes */}
+            {/* Profile with nested routes */}
             <Route
               path="/profile/:username/*"
               element={
@@ -41,10 +42,9 @@ export default function App() {
               }
             />
 
-            {/* Dynamic route for individual posts */}
+            
             <Route path="/posts/:postId" element={<PostPage />} />
-
-            {/* Catch-all for 404s */}
+            <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
